@@ -1,0 +1,16 @@
+name: lint
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Node check (js syntax)
+        run: |
+          set -e
+          for f in $(find . -name '*.js' -not -path './node_modules/*'); do node --check "$f"; done
+          echo "All JS files OK"
+      - name: Validate structure
+        run: |
+          test -f index.html && echo "index.html OK"
+          ! find . -name 'node_modules' -type d | grep -q . || (echo "node_modules committed!" && exit 1)

@@ -1,0 +1,22 @@
+# системное / среда
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# зависимости и сборка
+node_modules/
+__pycache__/
+*.pyc
+dist/
+build/
+.vite/
+
+# секреты
+.env
+.env.*
+*.local
+
+# авто-генерация
+cache/
