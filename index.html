@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NOODLE HOUSE — доставка лапши в Москве</title>
+  <meta
+    name="description"
+    content="NOODLE HOUSE — рамен, вок, гёдза и авторские боксы с доставкой по Москве за 30 минут."
+  />
+  <meta name="theme-color" content="#17110f" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ef3e22'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='35'%3E🍜%3C/text%3E%3C/svg%3E"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+            sans: ["DM Sans", "sans-serif"]
+          },
+          colors: {
+            ink: "#17110f",
+            paper: "#f5ede2",
+            cream: "#fffaf3",
+            fire: "#ef3e22",
+            fireDark: "#c92d18",
+            cocoa: "#241916",
+            smoke: "#a89588",
+            line: "rgba(255,255,255,.10)"
+          },
+          boxShadow: {
+            soft: "0 24px 80px rgba(0,0,0,.24)",
+            glow: "0 0 0 1px rgba(239,62,34,.16), 0 16px 50px rgba(239,62,34,.18)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg: #17110f;
+      --panel: #241916;
+      --panel-2: #2c1d19;
+      --cream: #fffaf3;
+      --paper: #f5ede2;
+      --muted: #a89588;
+      --fire: #ef3e22;
+      --fire-dark: #c92d18;
+      --line: rgba(255, 250, 243, .11);
+      --radius: 28px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(239,62,34,.10), transparent 30%),
+        radial-gradient(circle at 0% 35%, rgba(239,62,34,.05), transparent 25%),
+        var(--bg);
+      color: var(--cream);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    ::selection {
+      background: rgba(239,62,34,.35);
+      color: #fff;
+    }
+
+    .container-xl {
+      width: min(1200px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .display {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -.055em;
+    }
+
+    .glass {
+      background: rgba(36,25,22,.76);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,250,243,.08);
+    }
+
+    .grid-overlay {
+      background-image:
+        linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.28), transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      min-height: 620px;
+      border-radius: 36px;
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(14,9,8,.64), transparent 55%),
+        linear-gradient(to left, rgba(14,9,8,.16), transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(.2,.75,.2,1);
+    }
+
+    .hero-image:hover .hero-photo {
+      transform: scale(1.045);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.055);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: rgba(255,250,243,.88);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .section-kicker {
+      color: #f26a52;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+
+    .menu-card {
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.012)),
+        #241916;
+      border: 1px solid rgba(255,250,243,.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition:
+        transform .45s cubic-bezier(.2,.75,.2,1),
+        border-color .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(239,62,34,.35);
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+    }
+
+    .menu-card .food-image {
+      transition: transform .8s cubic-bezier(.2,.75,.2,1);
+    }
+
+    .menu-card:hover .food-image {
+      transform: scale(1.055);
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      transition:
+        transform .2s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+    }
+
+    .btn-primary {
+      background: var(--fire);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--fire-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(239,62,34,.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      color: #fffaf3;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.09);
+      transform: translateY(-2px);
+    }
+
+    .feature-card {
+      border: 1px solid rgba(255,250,243,.08);
+      background: rgba(255,255,255,.035);
+      border-radius: 24px;
+      transition: transform .35s ease, background .35s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,.055);
+    }
+
+    .feature-icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: rgba(239,62,34,.13);
+      color: #ff674e;
+      border: 1px solid rgba(239,62,34,.16);
+      font-size: 23px;
+    }
+
+    .choice {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.035);
+      border-radius: 17px;
+      padding: 13px 15px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .choice:hover {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.2);
+    }
+
+    .choice.active {
+      border-color: rgba(239,62,34,.76);
+      background: rgba(239,62,34,.11);
+      box-shadow: inset 0 0 0 1px rgba(239,62,34,.2);
+    }
+
+    .choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .top-choice {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.035);
+      border-radius: 15px;
+      padding: 11px 12px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .top-choice.active {
+      background: rgba(239,62,34,.11);
+      border-color: rgba(239,62,34,.7);
+    }
+
+    .input-field {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.11);
+      background: rgba(255,255,255,.045);
+      color: var(--cream);
+      border-radius: 16px;
+      padding: 14px 15px;
+      outline: none;
+      transition: border-color .2s ease, background .2s ease;
+    }
+
+    .input-field:focus {
+      border-color: rgba(239,62,34,.72);
+      background: rgba(255,255,255,.06);
+    }
+
+    .input-field::placeholder {
+      color: #8f7d72;
+    }
+
+    .review-card {
+      background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+    }
+
+    .promo-valid {
+      border-color: rgba(86,196,112,.6) !important;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.75,.2,1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: .08s; }
+    .delay-2 { transition-delay: .16s; }
+    .delay-3 { transition-delay: .24s; }
+    .delay-4 { transition-delay: .32s; }
+
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9,6,5,.7);
+      opacity: 0;
+      visibility: hidden;
+      transition: .3s ease;
+      z-index: 70;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      z-index: 80;
+      top: 0;
+      right: 0;
+      height: 100dvh;
+      width: min(480px, 100vw);
+      background: #1d1411;
+      border-left: 1px solid rgba(255,255,255,.08);
+      transform: translateX(100%);
+      transition: transform .38s cubic-bezier(.2,.75,.2,1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -22px 0 80px rgba(0,0,0,.3);
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .cart-items {
+      min-height: 0;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .cart-item:last-child {
+      border-bottom: 0;
+    }
+
+    .qty-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px;
+      padding: 3px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .qty-control button {
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: white;
+      font-size: 14px;
+      transition: .2s ease;
+    }
+
+    .qty-control button:hover {
+      background: rgba(255,255,255,.09);
+    }
+
+    .success-modal {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(.97);
+      transition: .3s ease;
+    }
+
+    .success-modal.open {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .mobile-nav {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .25s ease;
+    }
+
+    .mobile-nav.open {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 100;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 32px;
+      padding: 15px 0;
+      animation: marquee 24s linear infinite;
+      min-width: max-content;
+    }
+
+    .btn-primary:disabled {
+      cursor: not-allowed;
+      opacity: .35;
+      box-shadow: none;
+      transform: none;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-image {
+        min-height: 520px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container-xl {
+        width: min(100% - 28px, 1200px);
+      }
+
+      .cart-drawer {
+        width: 100%;
+        height: min(88dvh, 760px);
+        top: auto;
+        bottom: 0;
+        right: 0;
+        border-left: 0;
+        border-top: 1px solid rgba(255,255,255,.1);
+        border-radius: 28px 28px 0 0;
+        transform: translateY(100%);
+      }
+
+      .cart-drawer.open {
+        transform: translateY(0);
+      }
+
+      .hero-image {
+        min-height: 500px;
+        border-radius: 28px;
+      }
+
+      .check-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fixed inset-0 grid-overlay"></div>
+
+  <!-- TOP TICKER: marketing layer -->
+  <div class="bg-fire text-white overflow-hidden whitespace-nowrap relative z-[60] border-b border-white/10">
+    <div class="marquee-track inline-flex gap-8 px-4 py-2.5 text-[12px] font-extrabold uppercase tracking-[.08em]">
+      <span>🔥 FIRST15 — минус 15% на первый заказ</span><span class="text-white/50">•</span>
+      <span>🛵 Доставка 30 минут или десерт бесплатно</span><span class="text-white/50">•</span>
+      <span>🎁 Бесплатная доставка от 1 500 ₽</span><span class="text-white/50">•</span>
+      <span>🍜 Бульон варим 12 часов</span><span class="text-white/50">•</span>
+      <span>🔥 FIRST15 — минус 15% на первый заказ</span><span class="text-white/50">•</span>
+      <span>🛵 Доставка 30 минут или десерт бесплатно</span><span class="text-white/50">•</span>
+      <span>🎁 Бесплатная доставка от 1 500 ₽</span><span class="text-white/50">•</span>
+      <span>🍜 Бульон варим 12 часов</span><span class="text-white/50">•</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-[#17110f]/80 backdrop-blur-xl">
+    <div class="container-xl">
+      <div class="flex h-[76px] items-center justify-between gap-4">
+        <a href="#top" class="flex items-center gap-3 shrink-0" aria-label="NOODLE HOUSE">
+          <div class="grid h-10 w-10 place-items-center rounded-2xl bg-fire text-[21px] shadow-glow">🍜</div>
+          <div>
+            <div class="font-display text-[17px] font-bold tracking-tight">NOODLE HOUSE</div>
+            <div class="text-[9px] font-bold uppercase tracking-[.26em] text-smoke">Moscow • delivery</div>
+          </div>
+        </a>
+
+        <nav class="hidden items-center gap-7 text-sm text-white/65 lg:flex">
+          <a href="#menu" class="transition hover:text-white">Меню</a>
+          <a href="#box" class="transition hover:text-white">Конструктор</a>
+          <a href="#deals" class="transition hover:text-white">Акции</a>
+          <a href="#reviews" class="transition hover:text-white">Отзывы</a>
+          <a href="#contacts" class="transition hover:text-white">Контакты</a>
+        </nav>
+
+        <div class="hidden items-center gap-4 md:flex">
+          <a href="tel:+74951234567" class="text-sm font-semibold text-white/75 transition hover:text-white">
+            +7 (495) 123-45-67
+          </a>
+          <button
+            type="button"
+            data-open-cart
+            class="btn-primary inline-flex items-center gap-3 rounded-full px-4 py-2.5 text-sm font-bold"
+          >
+            <span>Корзина</span>
+            <span class="h-5 w-px bg-white/30"></span>
+            <span id="headerCartCount">0</span>
+            <span>•</span>
+            <span id="headerCartTotal">0 ₽</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            data-open-cart
+            class="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/5"
+            aria-label="Открыть корзину"
+          >
+            🛒
+          </button>
+          <button
+            type="button"
+            id="burgerBtn"
+            class="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/5"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+          >
+            <span class="text-lg">☰</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileNav" class="mobile-nav md:hidden">
+        <nav class="grid gap-2 border-t border-white/5 py-4 text-base">
+          <a href="#menu" class="rounded-xl px-3 py-3 text-white/80 hover:bg-white/5">Меню</a>
+          <a href="#box" class="rounded-xl px-3 py-3 text-white/80 hover:bg-white/5">Конструктор</a>
+          <a href="#deals" class="rounded-xl px-3 py-3 text-white/80 hover:bg-white/5">Акции</a>
+          <a href="#reviews" class="rounded-xl px-3 py-3 text-white/80 hover:bg-white/5">Отзывы</a>
+          <a href="#contacts" class="rounded-xl px-3 py-3 text-white/80 hover:bg-white/5">Контакты</a>
+          <a href="tel:+74951234567" class="mt-1 rounded-xl bg-white/5 px-3 py-3 font-semibold">+7 (495) 123-45-67</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden pt-8 md:pt-12">
+      <div class="container-xl">
+        <div class="grid items-stretch gap-5 lg:grid-cols-[.92fr_1.08fr]">
+          <div class="flex min-h-[500px] flex-col justify-between rounded-[28px] border border-white/8 bg-[#201512] p-7 md:p-10 lg:min-h-[620px] lg:p-12 reveal">
+            <div>
+              <span class="pill mb-6">🔥 Кухня уже шипит • доставка от 30 минут</span>
+
+              <h1 class="display max-w-[690px] text-[50px] font-bold leading-[.92] sm:text-[64px] lg:text-[78px]">
+                Лапша, ради которой
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-fire via-[#ffb84d] to-fire">опаздывают.</span>
+              </h1>
+
+              <p class="mt-6 max-w-[560px] text-base leading-7 text-white/60 sm:text-lg">
+                Рамен, вок и хрустящая гёдза — горячими, щедрыми и прямо к вам.
+                Бульон томим <b class="text-white">12 часов</b>, готовим после заказа и привозим так, будто только что сняли с огня.
+              </p>
+
+              <div class="mt-8 flex flex-wrap gap-3">
+                <a href="#menu" class="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-bold shadow-glow">
+                  Смотреть меню 🍜
+                  <span class="ml-2">↘</span>
+                </a>
+                <a href="#box" class="btn-secondary inline-flex items-center justify-center rounded-full px-6 py-3.5 font-bold">
+                  Собрать свой бокс 🥡
+                </a>
+              </div>
+
+              <div class="mt-8 grid gap-3 sm:grid-cols-3">
+                <div class="rounded-2xl border border-white/8 bg-white/[.03] px-4 py-3">
+                  <div class="text-[#ffb84d] text-sm tracking-tight">★★★★★</div>
+                  <div class="mt-1 font-bold">4.8 из 5</div>
+                  <div class="text-xs text-white/40">2 400+ оценок</div>
+                </div>
+                <div class="rounded-2xl border border-white/8 bg-white/[.03] px-4 py-3">
+                  <div class="text-2xl leading-none">🛵</div>
+                  <div class="mt-1 font-bold">30 минут</div>
+                  <div class="text-xs text-white/40">или десерт бесплатно</div>
+                </div>
+                <div class="rounded-2xl border border-white/8 bg-white/[.03] px-4 py-3">
+                  <div class="text-2xl leading-none">🔥</div>
+                  <div class="mt-1 font-bold">12 часов</div>
+                  <div class="text-xs text-white/40">томим бульон</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-10 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl border border-white/8 bg-white/[.03] p-4">
+                <div class="text-sm text-white/45">Сегодня заказано</div>
+                <div class="mt-1 font-display text-2xl font-bold">1 284 <span class="text-sm font-medium text-white/40">бокса</span></div>
+              </div>
+              <div class="rounded-2xl border border-white/8 bg-white/[.03] p-4">
+                <div class="text-sm text-white/45">Средний рейтинг</div>
+                <div class="mt-1 font-display text-2xl font-bold">4.8 <span class="text-[#ffb84d]">★</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-image reveal delay-1">
+            <img
+              class="hero-photo"
+              src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1400&q=86"
+              alt="Миска азиатской лапши"
+              loading="eager"
+            />
+
+            <div class="absolute left-5 top-5 z-10 sm:left-7 sm:top-7">
+              <div class="glass rounded-full px-4 py-2.5 text-xs font-bold">★ 4.8 • 1 200+ отзывов</div>
+            </div>
+
+            <div class="absolute right-5 top-5 z-10 sm:right-7 sm:top-7">
+              <div class="rounded-full bg-paper px-4 py-2.5 text-xs font-bold text-ink">30 мин • или бесплатно</div>
+            </div>
+
+            <div class="absolute bottom-5 left-5 right-5 z-10 sm:bottom-7 sm:left-7 sm:right-7">
+              <div class="rounded-[22px] border border-white/10 bg-black/25 p-5 backdrop-blur-md">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <div class="text-xs uppercase tracking-[.18em] text-white/45">Фирменный хит</div>
+                    <div class="mt-2 font-display text-2xl font-bold">Тантан Рамен</div>
+                    <div class="mt-1 text-sm text-white/55">Свинина • кунжут • чеснок • чили</div>
+                  </div>
+                  <button type="button" data-menu-add="ramen-tantan" class="btn-primary shrink-0 rounded-full px-5 py-3 text-sm font-extrabold">В корзину • 690 ₽</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee mt-8">
+      <div class="marquee-track font-display text-[13px] font-bold uppercase tracking-[.2em] text-white/28">
+        <span>РАМЕН</span><span>•</span><span>ВОК</span><span>•</span><span>ГЁДЗА</span><span>•</span>
+        <span>СПРИНГ-РОЛЛЫ</span><span>•</span><span>ХРУСТИТ</span><span>•</span>
+        <span>ДОСТАВКА 30 МИН</span><span>•</span>
+        <span>РАМЕН</span><span>•</span><span>ВОК</span><span>•</span><span>ГЁДЗА</span><span>•</span>
+        <span>СПРИНГ-РОЛЛЫ</span><span>•</span><span>ХРУСТИТ</span><span>•</span>
+        <span>ДОСТАВКА 30 МИН</span><span>•</span>
+      </div>
+    </div>
+
+    <!-- BENEFITS -->
+    <section class="container-xl py-20 md:py-28">
+      <div class="mb-9 reveal">
+        <div class="section-kicker">Почему мы</div>
+        <h2 class="section-title mt-3 max-w-[680px] text-4xl font-bold sm:text-5xl">
+          Никаких компромиссов между вкусом и скоростью.
+        </h2>
+      </div>
+
+      <div class="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <article class="feature-card p-5 reveal">
+          <div class="feature-icon">⏱</div>
+          <h3 class="mt-5 font-display text-xl font-bold">30 минут<br>или бесплатно</h3>
+          <p class="mt-3 text-sm leading-6 text-white/50">Не успели — доставка за наш счёт. Без мелкого шрифта.</p>
+        </article>
+
+        <article class="feature-card p-5 reveal delay-1">
+          <div class="feature-icon">🥬</div>
+          <h3 class="mt-5 font-display text-xl font-bold">Свежие<br>продукты</h3>
+          <p class="mt-3 text-sm leading-6 text-white/50">Овощи приезжают каждое утро. Бульон варим ежедневно.</p>
+        </article>
+
+        <article class="feature-card p-5 reveal delay-2">
+          <div class="feature-icon">👨‍🍳</div>
+          <h3 class="mt-5 font-display text-xl font-bold">Шеф<br>из Осаки</h3>
+          <p class="mt-3 text-sm leading-6 text-white/50">Кенджи собрал меню из любимой уличной классики Японии.</p>
+        </article>
+
+        <article class="feature-card p-5 reveal delay-3">
+          <div class="feature-icon">♻</div>
+          <h3 class="mt-5 font-display text-xl font-bold">Эко-<br>упаковка</h3>
+          <p class="mt-3 text-sm leading-6 text-white/50">Никакого лишнего пластика. Коробки можно переработать.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="container-xl scroll-mt-24 pb-20 md:pb-28">
+      <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end reveal">
+        <div>
+          <div class="section-kicker">Меню</div>
+          <h2 class="section-title mt-3 text-4xl font-bold sm:text-5xl">То, ради чего<br>возвращаются.</h2>
+        </div>
+        <div class="max-w-[420px] text-sm leading-6 text-white/45 md:text-right">
+          От классического тонкоцу до огненного вока. Порции, после которых не остаётся вопросов.
+        </div>
+      </div>
+
+      <div id="menuGrid" class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+    </section>
+
+    <!-- BOX BUILDER -->
+    <section id="box" class="container-xl scroll-mt-24 pb-20 md:pb-28">
+      <div class="overflow-hidden rounded-[32px] border border-white/8 bg-[#241916]">
+        <div class="grid lg:grid-cols-[.9fr_1.1fr]">
+          <div class="relative min-h-[420px] lg:min-h-[650px]">
+            <img
+              src="https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=1200&q=86"
+              alt="Лапша вок"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#18110f] via-transparent to-transparent"></div>
+
+            <div class="absolute left-6 top-6">
+              <span class="rounded-full bg-fire px-4 py-2 text-xs font-bold text-white">СОБЕРИ САМ</span>
+            </div>
+
+            <div class="absolute bottom-6 left-6 right-6 sm:left-8 sm:right-8">
+              <div class="max-w-[440px]">
+                <div class="section-kicker">Конструктор</div>
+                <h2 class="section-title mt-3 text-4xl font-bold sm:text-5xl">Бокс под твоё настроение.</h2>
+                <p class="mt-4 max-w-[430px] text-sm leading-6 text-white/55">
+                  Выбирай основу, белок, три топпинга и любимый соус. Цена обновляется на лету.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 lg:p-10">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <div class="text-xs uppercase tracking-[.16em] text-white/35">Шаг 1</div>
+                <h3 class="mt-2 font-display text-2xl font-bold">Основа</h3>
+              </div>
+              <div id="builderPrice" class="font-display text-2xl font-bold text-fire">450 ₽</div>
+            </div>
+
+            <div id="baseChoices" class="mt-5 grid gap-2"></div>
+
+            <div class="mt-8">
+              <div class="text-xs uppercase tracking-[.16em] text-white/35">Шаг 2</div>
+              <h3 class="mt-2 font-display text-2xl font-bold">Белок</h3>
+              <div id="proteinChoices" class="mt-5 grid gap-2"></div>
+            </div>
+
+            <div class="mt-8">
+              <div class="flex items-end justify-between gap-4">
+                <div>
+                  <div class="text-xs uppercase tracking-[.16em] text-white/35">Шаг 3</div>
+                  <h3 class="mt-2 font-display text-2xl font-bold">Топпинги</h3>
+                </div>
+                <div id="toppingsCounter" class="text-sm font-semibold text-white/40">0 / 3</div>
+              </div>
+
+              <div id="toppingChoices" class="check-grid mt-5"></div>
+            </div>
+
+            <div class="mt-8">
+              <div class="text-xs uppercase tracking-[.16em] text-white/35">Шаг 4</div>
+              <h3 class="mt-2 font-display text-2xl font-bold">Соус</h3>
+              <div id="sauceChoices" class="mt-5 grid gap-2"></div>
+            </div>
+
+            <div class="mt-9 rounded-2xl border border-white/8 bg-white/[.03] p-4">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <div class="text-sm font-bold">Твой кастомный бокс</div>
+                  <div id="builderSummary" class="mt-1 text-xs leading-5 text-white/42">
+                    Основа + белок + 3 топпинга + соус
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  id="addBoxBtn"
+                  class="btn-primary shrink-0 rounded-full px-5 py-3 text-sm font-bold"
+                >
+                  В корзину
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEALS -->
+    <section id="deals" class="container-xl scroll-mt-24 pb-20 md:pb-28">
+      <div class="reveal">
+        <div class="section-kicker">Сегодня выгодно</div>
+        <h2 class="section-title mt-3 text-4xl font-bold sm:text-5xl">Хороший повод заказать ещё.</h2>
+      </div>
+
+      <div class="mt-10 grid gap-4 lg:grid-cols-3">
+        <article class="relative min-h-[280px] overflow-hidden rounded-[28px] bg-[#5d2318] p-6 reveal">
+          <div class="absolute inset-0 opacity-40">
+            <img
+              src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=82"
+              alt=""
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#2b130e] via-[#2b130e]/55 to-transparent"></div>
+          <div class="relative flex h-full flex-col justify-between">
+            <span class="w-fit rounded-full bg-white/12 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[.12em] backdrop-blur">Комбо</span>
+            <div>
+              <div class="font-display text-3xl font-bold">Рамен + гёдза<br>+ лимонад</div>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-lg font-bold">990 ₽</span>
+                <span class="text-sm text-white/40 line-through">1 190 ₽</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="relative min-h-[280px] overflow-hidden rounded-[28px] border border-white/8 bg-[#211613] p-6 reveal delay-1">
+          <div class="relative flex h-full flex-col justify-between">
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-fire font-display text-xl font-bold">15%</div>
+            <div>
+              <div class="section-kicker">Для новых гостей</div>
+              <div class="mt-3 font-display text-3xl font-bold">-15% на первый заказ</div>
+              <div class="mt-3 max-w-[300px] text-sm leading-6 text-white/50">
+                Введи промокод <span class="font-bold text-white">FIRST15</span> в корзине.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="relative min-h-[280px] overflow-hidden rounded-[28px] border border-white/8 bg-[#211613] p-6 reveal delay-2">
+          <div class="relative flex h-full flex-col justify-between">
+            <div class="text-5xl">🚚</div>
+            <div>
+              <div class="section-kicker">Доставка</div>
+              <div class="mt-3 font-display text-3xl font-bold">0 ₽ от 1 500 ₽</div>
+              <div class="mt-3 max-w-[310px] text-sm leading-6 text-white/50">
+                Добавь ещё одну гёдзу. Или не добавляй — мы не осуждаем.
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="container-xl scroll-mt-24 pb-20 md:pb-28">
+      <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end reveal">
+        <div>
+          <div class="section-kicker">Отзывы</div>
+          <h2 class="section-title mt-3 text-4xl font-bold sm:text-5xl">Говорят громче,<br>чем мы о себе.</h2>
+        </div>
+        <div class="pill w-fit">★ 4.8 • средняя оценка</div>
+      </div>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <article class="review-card p-5 reveal">
+          <div class="flex items-center justify-between gap-3">
+            <div class="font-semibold">Анна • @ann_msk</div>
+            <div class="text-[#ffb84d]">★★★★★</div>
+          </div>
+          <p class="mt-5 text-sm leading-7 text-white/60">
+            «Тантан — просто опасно хороший. Соус, хруст чеснока, острота ровно такая, как люблю.
+            Водитель приехал раньше обещанного.»
+          </p>
+        </article>
+
+        <article class="review-card p-5 reveal delay-1">
+          <div class="flex items-center justify-between gap-3">
+            <div class="font-semibold">Илья • Химки</div>
+            <div class="text-[#ffb84d]">★★★★★</div>
+          </div>
+          <p class="mt-5 text-sm leading-7 text-white/60">
+            «Собирал бокс впервые — интерфейс настолько понятный, что ребёнок тоже мог бы.
+            Но ребёнку я лапшу не дал. Сам съел.»
+          </p>
+        </article>
+
+        <article class="review-card p-5 reveal delay-2">
+          <div class="flex items-center justify-between gap-3">
+            <div class="font-semibold">Мария • Москва</div>
+            <div class="text-[#ffb84d]">★★★★★</div>
+          </div>
+          <p class="mt-5 text-sm leading-7 text-white/60">
+            «Гёдза реально хрустит даже после доставки. Не знаю, какая тут магия, но сохраните её.»
+          </p>
+        </article>
+
+        <article class="review-card p-5 reveal delay-3">
+          <div class="flex items-center justify-between gap-3">
+            <div class="font-semibold">Данил • Хамовники</div>
+            <div class="text-[#ffb84d]">★★★★★</div>
+          </div>
+          <p class="mt-5 text-sm leading-7 text-white/60">
+            «Взяли комбо на двоих. Порции честные, всё горячее, лимонад — неожиданно топ.
+            Уже знаю, что закажу вечером.»
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="container-xl scroll-mt-24 pb-12 md:pb-20">
+      <div class="grid overflow-hidden rounded-[30px] border border-white/8 bg-[#241916] lg:grid-cols-[1.15fr_.85fr]">
+        <div class="p-7 md:p-10 reveal">
+          <div class="section-kicker">Контакты</div>
+          <h2 class="section-title mt-3 text-4xl font-bold sm:text-5xl">Горячая линия<br>лапши.</h2>
+
+          <div class="mt-8 grid gap-7 sm:grid-cols-2">
+            <div>
+              <div class="text-xs uppercase tracking-[.15em] text-white/30">Телефон</div>
+              <a href="tel:+74951234567" class="mt-2 block text-xl font-bold hover:text-fire">+7 (495) 123-45-67</a>
+            </div>
+
+            <div>
+              <div class="text-xs uppercase tracking-[.15em] text-white/30">Адрес кухни</div>
+              <div class="mt-2 text-xl font-bold">Москва, ул. Большая Якиманка, 32</div>
+            </div>
+
+            <div>
+              <div class="text-xs uppercase tracking-[.15em] text-white/30">Работаем</div>
+              <div class="mt-2 text-xl font-bold">Ежедневно, 11:00–23:30</div>
+            </div>
+
+            <div>
+              <div class="text-xs uppercase tracking-[.15em] text-white/30">E-mail</div>
+              <a href="mailto:hello@noodlehouse.ru" class="mt-2 block text-xl font-bold hover:text-fire">hello@noodlehouse.ru</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative min-h-[360px] overflow-hidden border-t border-white/8 lg:border-l lg:border-t-0">
+          <img
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=84"
+            alt="Интерьер ресторана"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#18110f]/90 to-transparent"></div>
+
+          <div class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-md">
+            <div class="text-xs uppercase tracking-[.15em] text-white/40">Зона доставки</div>
+            <div class="mt-2 text-sm leading-6 text-white/65">
+              Москва в пределах МКАД — 290 ₽ или бесплатно от 1 500 ₽.
+              За МКАД — +200 ₽.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/8">
+    <div class="container-xl flex flex-col justify-between gap-5 py-8 text-sm text-white/35 md:flex-row md:items-center">
+      <div>© 2026 NOODLE HOUSE. Едим горячим.</div>
+      <div class="flex flex-wrap gap-5">
+        <a href="#" class="hover:text-white">Политика конфиденциальности</a>
+        <a href="#" class="hover:text-white">Публичная оферта</a>
+        <a href="https://t.me/" target="_blank" rel="noreferrer" class="hover:text-white">Telegram ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART OVERLAY -->
+  <div id="drawerOverlay" class="drawer-overlay"></div>
+
+  <!-- CART DRAWER -->
+  <aside id="cartDrawer" class="cart-drawer" aria-label="Корзина">
+    <div class="flex items-center justify-between border-b border-white/8 px-5 py-5 sm:px-6">
+      <div>
+        <div class="text-xs uppercase tracking-[.16em] text-white/30">Твой заказ</div>
+        <h2 class="mt-1 font-display text-2xl font-bold">Корзина</h2>
+      </div>
+      <button id="closeCartBtn" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-white/8 bg-white/5 text-lg">
+        ×
+      </button>
+    </div>
+
+    <div class="flex min-h-0 flex-1 flex-col">
+      <div id="cartItems" class="cart-items flex-1 px-5 py-3 sm:px-6"></div>
+
+      <div class="border-t border-white/8 px-5 py-5 sm:px-6">
+        <div class="grid grid-cols-[1fr_auto] gap-2">
+          <input
+            id="promoInput"
+            type="text"
+            class="input-field uppercase"
+            placeholder="Промокод"
+            maxlength="20"
+            autocomplete="off"
+          />
+          <button
+            id="promoBtn"
+            type="button"
+            class="btn-secondary rounded-2xl px-4 font-bold"
+          >
+            Применить
+          </button>
+        </div>
+        <div id="promoMessage" class="mt-2 min-h-[18px] text-xs"></div>
+
+        <div id="freeDeliveryHint" class="mb-4 rounded-2xl border border-white/8 bg-white/[.03] p-3 text-xs leading-5 text-white/50"></div>
+
+        <div class="mt-5 space-y-2 text-sm">
+          <div class="flex justify-between gap-4 text-white/45">
+            <span>Товары</span>
+            <span id="cartSubtotal">0 ₽</span>
+          </div>
+          <div class="flex justify-between gap-4 text-white/45">
+            <span>Скидка</span>
+            <span id="cartDiscount">− 0 ₽</span>
+          </div>
+          <div class="flex justify-between gap-4 text-white/45">
+            <span>Доставка</span>
+            <span id="cartDelivery">0 ₽</span>
+          </div>
+          <div class="mt-3 flex justify-between gap-4 border-t border-white/8 pt-4">
+            <span class="font-semibold">Итого</span>
+            <span id="cartGrandTotal" class="font-display text-2xl font-bold">0 ₽</span>
+          </div>
+        </div>
+
+        <div class="mt-5 rounded-2xl border border-white/8 bg-white/[.03] p-4 text-xs leading-5 text-white/42">
+          <div>🚚 Бесплатная доставка от 1 500 ₽</div>
+          <div class="mt-1">🔥 За МКАД — +200 ₽ к доставке</div>
+        </div>
+
+        <button
+          id="goCheckoutBtn"
+          type="button"
+          class="btn-primary mt-4 flex w-full items-center justify-center rounded-full px-5 py-4 font-bold disabled:cursor-not-allowed disabled:opacity-35"
+        >
+          Перейти к оформлению
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CHECKOUT MODAL -->
+  <div
+    id="checkoutModal"
+    class="fixed inset-0 z-[85] hidden items-center justify-center bg-black/70 p-3 backdrop-blur-md sm:p-6"
+  >
+    <div class="max-h-[92dvh] w-full max-w-4xl overflow-auto rounded-[30px] border border-white/8 bg-[#1d1411] shadow-2xl">
+      <div class="flex items-center justify-between border-b border-white/8 px-6 py-5 sm:px-8">
+        <div>
+          <div class="text-xs uppercase tracking-[.16em] text-white/30">Последний шаг</div>
+          <h2 class="mt-1 font-display text-2xl font-bold">Оформление</h2>
+        </div>
+        <button id="closeCheckoutBtn" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-white/8 bg-white/5 text-lg">
+          ×
+        </button>
+      </div>
+
+      <form id="checkoutForm" class="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_.8fr]">
+        <div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="mb-2 block text-sm font-semibold">Имя</label>
+              <input required name="name" type="text" class="input-field" placeholder="Например, Артём" />
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-semibold">Телефон</label>
+              <input required name="phone" type="tel" class="input-field" placeholder="+7 (___) ___-__-__" />
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="mb-2 block text-sm font-semibold">Адрес доставки</label>
+              <input required name="address" type="text" class="input-field" placeholder="Улица, дом, квартира" />
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-semibold">Зона доставки</label>
+              <select name="zone" id="zoneSelect" class="input-field">
+                <option value="moscow">Москва — в пределах МКАД</option>
+                <option value="mkad">За МКАД (+200 ₽)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-semibold">Оплата</label>
+              <select name="payment" class="input-field">
+                <option value="card">Картой онлайн</option>
+                <option value="cash">Наличными курьеру</option>
+                <option value="terminal">Картой курьеру</option>
+              </select>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="mb-2 block text-sm font-semibold">Комментарий</label>
+              <textarea
+                name="comment"
+                rows="3"
+                class="input-field resize-none"
+                placeholder="Домофон, этаж, соус отдельно..."
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-white/8 bg-white/[.03] p-5">
+          <div class="text-xs uppercase tracking-[.16em] text-white/30">Заказ</div>
+          <div id="checkoutSummary" class="mt-4 space-y-3"></div>
+
+          <div class="mt-5 border-t border-white/8 pt-5">
+            <div class="flex justify-between gap-4 text-sm text-white/45">
+              <span>Товары</span>
+              <span id="checkoutSubtotal">0 ₽</span>
+            </div>
+            <div class="mt-2 flex justify-between gap-4 text-sm text-white/45">
+              <span>Скидка</span>
+              <span id="checkoutDiscount">− 0 ₽</span>
+            </div>
+            <div class="mt-2 flex justify-between gap-4 text-sm text-white/45">
+              <span>Доставка</span>
+              <span id="checkoutDelivery">0 ₽</span>
+            </div>
+            <div class="mt-4 flex justify-between gap-4 border-t border-white/8 pt-4">
+              <span class="font-semibold">Итого</span>
+              <span id="checkoutTotal" class="font-display text-2xl font-bold">0 ₽</span>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn-primary mt-6 w-full rounded-full px-5 py-4 font-bold"
+          >
+            Заказать
+          </button>
+
+          <p class="mt-3 text-center text-[11px] leading-5 text-white/28">
+            Нажимая «Заказать», вы соглашаетесь с условиями обработки заказа.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div
+    id="successOverlay"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/75 p-4 backdrop-blur-md"
+  >
+    <div class="success-modal w-full max-w-md rounded-[30px] border border-white/8 bg-[#241916] p-7 text-center shadow-2xl sm:p-9">
+      <div class="mx-auto grid h-20 w-20 place-items-center rounded-[24px] bg-fire text-4xl shadow-glow">✓</div>
+      <div class="mt-6 text-xs uppercase tracking-[.17em] text-fire">Заказ принят</div>
+      <h2 class="mt-2 font-display text-4xl font-bold">Лапша уже в пути.</h2>
+      <p class="mx-auto mt-4 max-w-[340px] text-sm leading-6 text-white/50">
+        Мы получили заказ и начинаем готовить. Курьер свяжется с вами, когда будет рядом.
+      </p>
+
+      <div class="mt-7 rounded-2xl border border-white/8 bg-white/[.03] p-5">
+        <div class="text-xs uppercase tracking-[.14em] text-white/30">Номер заказа</div>
+        <div id="successOrderNumber" class="mt-2 font-display text-3xl font-bold">NH-000000</div>
+      </div>
+
+      <button
+        id="successCloseBtn"
+        type="button"
+        class="btn-primary mt-6 w-full rounded-full px-5 py-4 font-bold"
+      >
+        Отлично
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast rounded-full border border-white/10 bg-[#2a1a16] px-5 py-3 text-sm font-semibold shadow-2xl">
+    Добавлено в корзину
+  </div>
+
+  <script>
+    const MENU = [
+      {
+        id: "ramen-tonkotsu",
+        name: "Тонкоцу Рамен",
+        description: "Сливочный свиной бульон, тягучая лапша, яйцо, нори и зелёный лук.",
+        price: 690,
+        weight: "520 г",
+        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=82",
+        tag: "Хит"
+      },
+      {
+        id: "ramen-tantan",
+        name: "Тантан Рамен",
+        description: "Острый кунжутный бульон, свинина, пак-чой, чеснок и домашнее чили-масло.",
+        price: 690,
+        weight: "500 г",
+        image: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=900&q=82",
+        tag: "Остро"
+      },
+      {
+        id: "ramen-shoyu",
+        name: "Шою Рамен",
+        description: "Прозрачный соево-куриный бульон, курица, бамбук, нори и маринованное яйцо.",
+        price: 620,
+        weight: "510 г",
+        image: "https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=900&q=82",
+        tag: ""
+      },
+      {
+        id: "wok-beef",
+        name: "Вок с говядиной",
+        description: "Яичная лапша, мраморная говядина, перец, брокколи и соус терияки.",
+        price: 610,
+        weight: "430 г",
+        image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=82",
+        tag: "Сочно"
+      },
+      {
+        id: "wok-chicken",
+        name: "Вок с курицей",
+        description: "Лапша, сочная курица, морковь, зелёный лук и пикантный соус шрирача.",
+        price: 570,
+        weight: "430 г",
+        image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=82",
+        tag: ""
+      },
+      {
+        id: "gyoza",
+        name: "Гёдза со свининой",
+        description: "6 жареных пельмешек с сочной начинкой и имбирно-соевым соусом.",
+        price: 390,
+        weight: "180 г",
+        image: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=900&q=82",
+        tag: "6 шт."
+      },
+      {
+        id: "spring-rolls",
+        name: "Хрустящие спринг-роллы",
+        description: "Овощи, стеклянная лапша, арахис и сладко-острый соус.",
+        price: 340,
+        weight: "170 г",
+        image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=82",
+        tag: "Хруст"
+      },
+      {
+        id: "lemonade",
+        name: "Юдзу-лимонад",
+        description: "Юдзу, лимон, мята и газированная вода. Свежий, яркий, 0.4 л.",
+        price: 240,
+        weight: "400 мл",
+        image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=82",
+        tag: ""
+      }
+    ];
+
+    const BUILDER = {
+      base: [
+        { id: "udon", name: "Удон", price: 0 },
+        { id: "egg", name: "Яичная лапша", price: 0 },
+        { id: "soba", name: "Соба", price: 30 },
+        { id: "rice", name: "Рис", price: 0 }
+      ],
+      protein: [
+        { id: "chicken", name: "Курица терияки", price: 140 },
+        { id: "pork", name: "Свинина", price: 170 },
+        { id: "beef", name: "Говядина", price: 220 },
+        { id: "tofu", name: "Тофу", price: 110 }
+      ],
+      toppings: [
+        { id: "egg", name: "Яйцо рамен", price: 70 },
+        { id: "nori", name: "Нори", price: 40 },
+        { id: "pakchoi", name: "Пак-чой", price: 50 },
+        { id: "corn", name: "Кукуруза", price: 40 },
+        { id: "mushrooms", name: "Шиитаке", price: 60 },
+        { id: "chili", name: "Чили-масло", price: 35 }
+      ],
+      sauce: [
+        { id: "teriyaki", name: "Терияки", price: 0 },
+        { id: "sesame", name: "Кунжутный", price: 20 },
+        { id: "spicy", name: "Острый чили", price: 20 },
+        { id: "soy", name: "Соево-имбирный", price: 0 }
+      ]
+    };
+
+    const STORAGE_KEY = "noodle-house-cart-v1";
+    const PROMO_KEY = "noodle-house-promo";
+
+    let cart = loadCart();
+    let promo = localStorage.getItem(PROMO_KEY) === "FIRST15" ? "FIRST15" : "";
+
+    let builderState = {
+      base: "udon",
+      protein: "chicken",
+      toppings: ["egg", "nori", "pakchoi"],
+      sauce: "teriyaki"
+    };
+
+    const currency = (value) =>
+      new Intl.NumberFormat("ru-RU").format(Math.round(value)) + " ₽";
+
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveCart() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    }
+
+    function showToast(message = "Добавлено в корзину") {
+      const el = document.getElementById("toast");
+      el.textContent = message;
+      el.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => el.classList.remove("show"), 1800);
+    }
+
+    function findMenuItem(id) {
+      return MENU.find((item) => item.id === id);
+    }
+
+    function cartItemCount() {
+      return cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    function subtotal() {
+      return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    }
+
+    function discountAmount() {
+      if (promo !== "FIRST15") return 0;
+      return subtotal() * 0.15;
+    }
+
+    function deliveryAmount() {
+      const base = subtotal() - discountAmount();
+      const zone = document.getElementById("zoneSelect")?.value || "moscow";
+
+      if (base <= 0) return 0;
+
+      let delivery = base >= 1500 ? 0 : 290;
+      if (zone === "mkad") delivery += 200;
+
+      return delivery;
+    }
+
+    function grandTotal() {
+      return Math.max(0, subtotal() - discountAmount()) + deliveryAmount();
+    }
+
+    function updateHeader() {
+      document.getElementById("headerCartCount").textContent = cartItemCount();
+      document.getElementById("headerCartTotal").textContent = currency(grandTotal());
+    }
+
+    function addToCart({ id, name, price, image, qty = 1, meta = "" }) {
+      const existing = cart.find(
+        (item) => item.id === id && item.meta === meta
+      );
+
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({ id, name, price, image, qty, meta });
+      }
+
+      saveCart();
+      renderCart();
+      updateHeader();
+      showToast("Добавлено в корзину");
+    }
+
+    function changeQty(index, delta) {
+      if (!cart[index]) return;
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+      renderCart();
+      updateHeader();
+    }
+
+    function removeItem(index) {
+      if (!cart[index]) return;
+      cart.splice(index, 1);
+      saveCart();
+      renderCart();
+      updateHeader();
+    }
+
+    function renderMenu() {
+      const grid = document.getElementById("menuGrid");
+
+      grid.innerHTML = MENU.map((item, index) => `
+        <article class="menu-card reveal ${index % 4 === 1 ? "delay-1" : index % 4 === 2 ? "delay-2" : index % 4 === 3 ? "delay-3" : ""}">
+          <div class="relative aspect-[1.06] overflow-hidden">
+            <img
+              src="${item.image}"
+              alt="${item.name}"
+              class="food-image h-full w-full object-cover"
+              loading="lazy"
+            />
+            ${
+              item.tag
+                ? `<span class="absolute left-3 top-3 rounded-full bg-[#17110f]/75 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.12em] backdrop-blur">${item.tag}</span>`
+                : ""
+            }
+          </div>
+
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-display text-xl font-bold">${item.name}</h3>
+                <div class="mt-1 text-xs text-white/35">${item.weight}</div>
+              </div>
+              <div class="shrink-0 font-display text-xl font-bold">${currency(item.price)}</div>
+            </div>
+
+            <p class="mt-3 min-h-[66px] text-sm leading-6 text-white/48">${item.description}</p>
+
+            <button
+              type="button"
+              data-menu-add="${item.id}"
+              class="btn-secondary mt-4 w-full rounded-full px-4 py-3 text-sm font-bold"
+            >
+              В корзину <span class="ml-1">+</span>
+            </button>
+          </div>
+        </article>
+      `).join("");
+
+      // Trigger observer for dynamically inserted cards.
+      setTimeout(() => observeReveals(), 50);
+    }
+
+    function renderBuilderChoices() {
+      const baseWrap = document.getElementById("baseChoices");
+      const proteinWrap = document.getElementById("proteinChoices");
+      const topWrap = document.getElementById("toppingChoices");
+      const sauceWrap = document.getElementById("sauceChoices");
+
+      baseWrap.innerHTML = BUILDER.base.map(item => `
+        <label class="choice ${builderState.base === item.id ? "active" : ""}">
+          <input type="radio" name="builderBase" value="${item.id}" ${builderState.base === item.id ? "checked" : ""}>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-sm font-semibold">${item.name}</span>
+            <span class="text-xs text-white/35">${item.price ? "+" + currency(item.price).replace(" ₽", " ₽") : "включено"}</span>
+          </div>
+        </label>
+      `).join("");
+
+      proteinWrap.innerHTML = BUILDER.protein.map(item => `
+        <label class="choice ${builderState.protein === item.id ? "active" : ""}">
+          <input type="radio" name="builderProtein" value="${item.id}" ${builderState.protein === item.id ? "checked" : ""}>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-sm font-semibold">${item.name}</span>
+            <span class="text-xs text-white/35">+${item.price} ₽</span>
+          </div>
+        </label>
+      `).join("");
+
+      topWrap.innerHTML = BUILDER.toppings.map(item => `
+        <label class="top-choice ${builderState.toppings.includes(item.id) ? "active" : ""}">
+          <input
+            type="checkbox"
+            value="${item.id}"
+            ${builderState.toppings.includes(item.id) ? "checked" : ""}
+            class="topping-input absolute opacity-0"
+          />
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <div class="text-sm font-semibold">${item.name}</div>
+              <div class="mt-1 text-xs text-white/35">+${item.price} ₽</div>
+            </div>
+            <span class="mt-0.5 text-sm">${builderState.toppings.includes(item.id) ? "✓" : ""}</span>
+          </div>
+        </label>
+      `).join("");
+
+      sauceWrap.innerHTML = BUILDER.sauce.map(item => `
+        <label class="choice ${builderState.sauce === item.id ? "active" : ""}">
+          <input type="radio" name="builderSauce" value="${item.id}" ${builderState.sauce === item.id ? "checked" : ""}>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-sm font-semibold">${item.name}</span>
+            <span class="text-xs text-white/35">${item.price ? "+" + item.price + " ₽" : "включено"}</span>
+          </div>
+        </label>
+      `).join("");
+
+      document.getElementById("toppingsCounter").textContent =
+        `${builderState.toppings.length} / 3`;
+
+      updateBuilder();
+    }
+
+    function getBuilderPrice() {
+      const base = BUILDER.base.find(x => x.id === builderState.base);
+      const protein = BUILDER.protein.find(x => x.id === builderState.protein);
+      const sauce = BUILDER.sauce.find(x => x.id === builderState.sauce);
+      const tops = BUILDER.toppings.filter(x => builderState.toppings.includes(x.id));
+
+      return 450
+        + (base?.price || 0)
+        + (protein?.price || 0)
+        + tops.reduce((s, x) => s + x.price, 0)
+        + (sauce?.price || 0);
+    }
+
+    function updateBuilder() {
+      const price = getBuilderPrice();
+      document.getElementById("builderPrice").textContent = currency(price);
+
+      const base = BUILDER.base.find(x => x.id === builderState.base);
+      const protein = BUILDER.protein.find(x => x.id === builderState.protein);
+      const sauce = BUILDER.sauce.find(x => x.id === builderState.sauce);
+      const tops = BUILDER.toppings
+        .filter(x => builderState.toppings.includes(x.id))
+        .map(x => x.name)
+        .join(", ");
+
+      document.getElementById("builderSummary").textContent =
+        `${base?.name}, ${protein?.name}, ${tops || "выбери 3 топпинга"}, ${sauce?.name}`;
+
+      document.querySelectorAll("#baseChoices .choice").forEach((el) => {
+        const input = el.querySelector("input");
+        el.classList.toggle("active", input.checked);
+      });
+
+      document.querySelectorAll("#proteinChoices .choice").forEach((el) => {
+        const input = el.querySelector("input");
+        el.classList.toggle("active", input.checked);
+      });
+
+      document.querySelectorAll("#sauceChoices .choice").forEach((el) => {
+        const input = el.querySelector("input");
+        el.classList.toggle("active", input.checked);
+      });
+
+      document.querySelectorAll("#toppingChoices .top-choice").forEach((el) => {
+        const input = el.querySelector("input");
+        el.classList.toggle("active", input.checked);
+        el.querySelector("span").textContent = input.checked ? "✓" : "";
+      });
+    }
+
+    function renderCart() {
+      const itemsWrap = document.getElementById("cartItems");
+
+      if (!cart.length) {
+        itemsWrap.innerHTML = `
+          <div class="flex h-full min-h-[260px] flex-col items-center justify-center text-center">
+            <div class="text-5xl">🥢</div>
+            <div class="mt-5 font-display text-2xl font-bold">Пока пусто</div>
+            <p class="mt-2 max-w-[270px] text-sm leading-6 text-white/40">
+              Добавь рамен, вок или собери собственный бокс.
+            </p>
+            <button
+              type="button"
+              data-close-cart-and-scroll
+              class="btn-secondary mt-5 rounded-full px-5 py-3 text-sm font-bold"
+            >
+              Смотреть меню
+            </button>
+          </div>
+        `;
+      } else {
+        itemsWrap.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <img
+              src="${item.image}"
+              alt="${item.name}"
+              class="h-[72px] w-[72px] rounded-2xl object-cover"
+            />
+            <div class="min-w-0">
+              <div class="truncate font-semibold">${item.name}</div>
+              ${
+                item.meta
+                  ? `<div class="mt-1 line-clamp-2 text-xs leading-5 text-white/35">${item.meta}</div>`
+                  : ""
+              }
+              <div class="mt-2 flex items-center justify-between gap-3">
+                <div class="qty-control">
+                  <button type="button" data-qty-minus="${index}" aria-label="Уменьшить">−</button>
+                  <span class="min-w-[18px] text-center text-xs font-bold">${item.qty}</span>
+                  <button type="button" data-qty-plus="${index}" aria-label="Увеличить">+</button>
+                </div>
+                <div class="text-sm font-bold">${currency(item.price * item.qty)}</div>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-remove="${index}"
+              class="self-start text-lg text-white/25 transition hover:text-white"
+              aria-label="Удалить товар"
+            >×</button>
+          </div>
+        `).join("");
+      }
+
+      document.getElementById("cartSubtotal").textContent = currency(subtotal());
+      document.getElementById("cartDiscount").textContent = `− ${currency(discountAmount())}`;
+      document.getElementById("cartDelivery").textContent =
+        deliveryAmount() === 0 ? "Бесплатно" : currency(deliveryAmount());
+      document.getElementById("cartGrandTotal").textContent = currency(grandTotal());
+      document.getElementById("goCheckoutBtn").disabled = cart.length === 0;
+
+      const hint = document.getElementById("freeDeliveryHint");
+      const discountedBase = Math.max(0, subtotal() - discountAmount());
+      if (!cart.length) {
+        hint.textContent = "🎁 Бесплатная доставка от 1 500 ₽";
+      } else if (discountedBase >= 1500) {
+        hint.textContent = "🎉 Отлично — бесплатная доставка уже включена";
+      } else {
+        hint.textContent = `До бесплатной доставки не хватает ${currency(1500 - discountedBase)} — можно добрать гёдзу или лимонад.`;
+      }
+
+      const promoInput = document.getElementById("promoInput");
+      promoInput.value = promo;
+      promoInput.classList.toggle("promo-valid", promo === "FIRST15");
+
+      updateHeader();
+    }
+
+    function renderCheckoutSummary() {
+      const summary = document.getElementById("checkoutSummary");
+
+      summary.innerHTML = cart.length
+        ? cart.map(item => `
+            <div class="flex items-start justify-between gap-4 text-sm">
+              <div class="min-w-0">
+                <div class="truncate font-semibold">${item.name}</div>
+                <div class="mt-0.5 text-xs text-white/32">${item.qty} × ${currency(item.price)}</div>
+              </div>
+              <div class="font-bold">${currency(item.qty * item.price)}</div>
+            </div>
+          `).join("")
+        : `<div class="text-sm text-white/35">Корзина пуста.</div>`;
+
+      document.getElementById("checkoutSubtotal").textContent = currency(subtotal());
+      document.getElementById("checkoutDiscount").textContent = `− ${currency(discountAmount())}`;
+      document.getElementById("checkoutDelivery").textContent =
+        deliveryAmount() === 0 ? "Бесплатно" : currency(deliveryAmount());
+      document.getElementById("checkoutTotal").textContent = currency(grandTotal());
+    }
+
+    function openCart() {
+      document.getElementById("cartDrawer").classList.add("open");
+      document.getElementById("drawerOverlay").classList.add("open");
+      document.body.classList.add("overflow-hidden");
+    }
+
+    function closeCart() {
+      document.getElementById("cartDrawer").classList.remove("open");
+      document.getElementById("drawerOverlay").classList.remove("open");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    function openCheckout() {
+      if (!cart.length) {
+        showToast("Сначала добавь что-нибудь в корзину");
+        return;
+      }
+
+      renderCheckoutSummary();
+      closeCart();
+
+      const modal = document.getElementById("checkoutModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.classList.add("overflow-hidden");
+    }
+
+    function closeCheckout() {
+      const modal = document.getElementById("checkoutModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    function applyPromo() {
+      const input = document.getElementById("promoInput");
+      const msg = document.getElementById("promoMessage");
+      const code = input.value.trim().toUpperCase();
+
+      if (!code) {
+        promo = "";
+        localStorage.removeItem(PROMO_KEY);
+        msg.textContent = "";
+        msg.className = "mt-2 min-h-[18px] text-xs";
+        renderCart();
+        return;
+      }
+
+      if (code === "FIRST15") {
+        promo = "FIRST15";
+        localStorage.setItem(PROMO_KEY, promo);
+        msg.textContent = "Промокод применён: −15%";
+        msg.className = "mt-2 min-h-[18px] text-xs text-emerald-400";
+        renderCart();
+        showToast("Скидка 15% применена");
+      } else {
+        promo = "";
+        localStorage.removeItem(PROMO_KEY);
+        msg.textContent = "Такого промокода нет";
+        msg.className = "mt-2 min-h-[18px] text-xs text-red-300";
+        renderCart();
+      }
+    }
+
+    function showSuccess() {
+      const number = "NH-" + String(Math.floor(100000 + Math.random() * 900000));
+      document.getElementById("successOrderNumber").textContent = number;
+
+      const overlay = document.getElementById("successOverlay");
+      overlay.classList.remove("hidden");
+      overlay.classList.add("flex");
+
+      requestAnimationFrame(() => {
+        document.querySelector("#successOverlay .success-modal").classList.add("open");
+      });
+
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(PROMO_KEY);
+      cart = [];
+      promo = "";
+
+      renderCart();
+    }
+
+    function closeSuccess() {
+      document.querySelector("#successOverlay .success-modal").classList.remove("open");
+      setTimeout(() => {
+        const overlay = document.getElementById("successOverlay");
+        overlay.classList.add("hidden");
+        overlay.classList.remove("flex");
+      }, 280);
+    }
+
+    // Event delegation
+    document.addEventListener("click", (event) => {
+      const addBtn = event.target.closest("[data-menu-add]");
+      if (addBtn) {
+        const id = addBtn.dataset.menuAdd;
+        const item = findMenuItem(id);
+        if (item) {
+          addToCart({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            image: item.image
+          });
+        }
+        return;
+      }
+
+      const plusBtn = event.target.closest("[data-qty-plus]");
+      if (plusBtn) {
+        changeQty(Number(plusBtn.dataset.qtyPlus), 1);
+        return;
+      }
+
+      const minusBtn = event.target.closest("[data-qty-minus]");
+      if (minusBtn) {
+        changeQty(Number(minusBtn.dataset.qtyMinus), -1);
+        return;
+      }
+
+      const removeBtn = event.target.closest("[data-remove]");
+      if (removeBtn) {
+        removeItem(Number(removeBtn.dataset.remove));
+        return;
+      }
+
+      const scrollBtn = event.target.closest("[data-close-cart-and-scroll]");
+      if (scrollBtn) {
+        closeCart();
+        document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
+      if (event.target.closest("[data-open-cart]")) {
+        openCart();
+        return;
+      }
+    });
+
+    // Builder
+    document.addEventListener("change", (event) => {
+      if (event.target.name === "builderBase") {
+        builderState.base = event.target.value;
+        updateBuilder();
+      }
+
+      if (event.target.name === "builderProtein") {
+        builderState.protein = event.target.value;
+        updateBuilder();
+      }
+
+      if (event.target.name === "builderSauce") {
+        builderState.sauce = event.target.value;
+        updateBuilder();
+      }
+
+      if (event.target.classList.contains("topping-input")) {
+        const checked = [...document.querySelectorAll(".topping-input:checked")].map(
+          el => el.value
+        );
+
+        if (checked.length > 3) {
+          event.target.checked = false;
+          showToast("Можно выбрать только 3 топпинга");
+        } else {
+          builderState.toppings = checked;
+        }
+
+        updateBuilder();
+      }
+
+      if (event.target.id === "zoneSelect") {
+        renderCart();
+        renderCheckoutSummary();
+      }
+    });
+
+    document.getElementById("addBoxBtn").addEventListener("click", () => {
+      if (builderState.toppings.length !== 3) {
+        showToast("Выбери ровно 3 топпинга");
+        return;
+      }
+
+      const base = BUILDER.base.find(x => x.id === builderState.base);
+      const protein = BUILDER.protein.find(x => x.id === builderState.protein);
+      const sauce = BUILDER.sauce.find(x => x.id === builderState.sauce);
+      const toppings = BUILDER.toppings.filter(x => builderState.toppings.includes(x.id));
+
+      const meta = [
+        base.name,
+        protein.name,
+        ...toppings.map(x => x.name),
+        sauce.name
+      ].join(" • ");
+
+      const signature = [
+        "box",
+        builderState.base,
+        builderState.protein,
+        [...builderState.toppings].sort().join("-"),
+        builderState.sauce
+      ].join("_");
+
+      addToCart({
+        id: signature,
+        name: `Твой бокс — ${base.name}`,
+        price: getBuilderPrice(),
+        image: "https://images.unsplash.com/photo-1557872943-16a5ac26437e?auto=format&fit=crop&w=800&q=82",
+        meta
+      });
+    });
+
+    // Cart UI
+    document.getElementById("closeCartBtn").addEventListener("click", closeCart);
+    document.getElementById("drawerOverlay").addEventListener("click", closeCart);
+    document.getElementById("goCheckoutBtn").addEventListener("click", openCheckout);
+    document.getElementById("promoBtn").addEventListener("click", applyPromo);
+    document.getElementById("promoInput").addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        applyPromo();
+      }
+    });
+
+    // Checkout
+    document.getElementById("closeCheckoutBtn").addEventListener("click", closeCheckout);
+
+    document.getElementById("checkoutModal").addEventListener("click", (event) => {
+      if (event.target.id === "checkoutModal") {
+        closeCheckout();
+      }
+    });
+
+    document.getElementById("checkoutForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      showSuccess();
+      form.reset();
+      closeCheckout();
+    });
+
+    document.getElementById("successCloseBtn").addEventListener("click", () => {
+      closeSuccess();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Mobile navigation
+    const burgerBtn = document.getElementById("burgerBtn");
+    const mobileNav = document.getElementById("mobileNav");
+
+    burgerBtn.addEventListener("click", () => {
+      const open = mobileNav.classList.toggle("open");
+      burgerBtn.setAttribute("aria-expanded", String(open));
+    });
+
+    mobileNav.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        mobileNav.classList.remove("open");
+        burgerBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Reveal on scroll
+    let revealObserver;
+
+    function observeReveals() {
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -45px 0px" }
+        );
+      }
+
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach(el => {
+        revealObserver.observe(el);
+      });
+    }
+
+    // Init
+    renderMenu();
+    renderBuilderChoices();
+    renderCart();
+    observeReveals();
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeCart();
+        closeCheckout();
+        closeSuccess();
+      }
+    });
+  </script>
+</body>
+</html>
